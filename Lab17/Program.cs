@@ -10,55 +10,40 @@ namespace Lab17
     {
         static void Main(string[] args)
         {
-            Method method = new Method();
+            Console.Write("Vvedite Account Number:");
+            int accnum1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Vvedite Account Number Propisyu:");
+            string accnum2 = Console.ReadLine();
+            Console.Write("Vvedite balance:");
+            double balance1 = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Vvedite Full Name:");
+            string fname1 = Console.ReadLine();
+            Account<int> account1 = new Account<int>(accnum1, balance1, fname1);
+            Account<string> account2 = new Account<string>(accnum2, balance1, fname1);
+            account1.Print();
             Console.WriteLine();
-            Method1 method1 = new Method1();
-            method.Fill();
-            Console.WriteLine();
-            method1.Fill();
+            account2.Print();
             Console.ReadKey();
         }
     }
-    class Account<T, U>
+    class Account<T>
     {
-        protected T AccNumb { get; set; }
-        protected U Balance { get; set; }
-        protected string FullName { get; set; }
-    }
-    class Method : Account<double, double>
-    {
-        public Method()
+        private T AccNumb;
+        private double Balance;
+        private string FullName;
+        public Account(T accnumb, double balance, string fullname)
         {
-            Console.Write("Vvedite Account Number:");
-            AccNumb = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Vvedite Balance:");
-            Balance = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Vvedite Full Name:");
-            FullName = Console.ReadLine();
+            AccNumb = accnumb;
+            Balance = balance;
+            FullName = fullname;
         }
-        public void Fill()
+        public void Print()
         {
-            Console.WriteLine("ФИО: {0}\nНомер счета: {1}\nБаланс: {2:C2}", FullName, AccNumb, Balance);
+            Console.Write("Account Number:{0} ", AccNumb);
+            Console.Write("Balance:{0} ", Balance);
+            Console.Write("Full Name:{0} ", FullName);
         }
     }
-
-    class Method1 : Account<double, string>
-    {
-        public Method1()
-        {
-            Console.Write("Vvedite Account Number:");
-            AccNumb = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Vvedite balance propisyu:");
-            Balance = Console.ReadLine();
-            Console.Write("Vvedite Full Name:");
-            FullName = Console.ReadLine();
-        }
-        public void Fill()
-        {
-            Console.WriteLine("ФИО: {0}\nНомер счета: {1}\nБаланс: {2}", FullName, AccNumb, Balance);
-        }
-    }
-
 }
 
 
